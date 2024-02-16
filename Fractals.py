@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.colors import LogNorm
 
 class Mandelbrot():
     def __init__(self, name, xmin, xmax, ymin, ymax, width, height, max_iter):
@@ -35,11 +36,85 @@ class Mandelbrot():
     
     def display_fractal(self):
         plt.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax))
-        plt.title(self.name)
-        plt.set_cmap()
+        plt.set_cmap("hot")
         plt.show()
 
-mandalbrot = Mandelbrot("MandelbrotSet", xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter=256)
-mandalbrot.display_fractal()
+
+class Julia():
+    def __init__(self, h_range, w_range, max_iter):
+        self.h_range = h_range
+        self.w_range = w_range
+        self.max_iter = max_iter
+        self.jset = self.julia_set()
+        
+    def julia_set(self):
+        y, x = np.ogrid[-1.5:1.5:self.h_range*1j, -1.5:1.5:self.w_range*1j]
+        z = x + y*1j
+        a = -0.8 + 0.156j
+        iter_div = np.zeros(z.shape)
+
+        for h in range(self.h_range):
+            for w in range(self.w_range):
+                c = z[h, w]
+                for i in range(self.max_iter):
+                    z[h, w] = z[h, w]**2 + a
+                    if z[h, w] * np.conj(z[h, w]) > 4:
+                        iter_div[h, w] = i
+                        break
+        return iter_div
+
+    def draw_julia(self):
+        plt.imshow(self.jset, extent=(-1.5, 1.5, -1.5, 1.5), cmap="magma", norm=LogNorm())
+        plt.axis("off")
+        plt.show()
+
+julia_set = Julia(h_range=500, w_range=500, max_iter=69)
+julia_set.draw_julia()
 
 
+class BurningShip():
+    def __init__(self, x, y, num_iterations, xmin=-2, xmax=2, ymin=-2, ymax=2, width=1000, height=1000):
+        self.xmin = xmin
+        self.xmax = xmax
+        self.ymin = ymin
+        self.ymax = ymax
+        self.width = width
+        self.height = height
+        self.num_iterations = num_iterations
+        self.mset = self.generate_burning_ship(x, y)
+
+    def mandelbrot(self, x, y, num_iterations):
+        c = complex(x, y)
+        zx = 0
+        zy = 0
+        
+        for i in range(num_iterations):
+            next_zx = zx**2 - zy**2 + x
+            zy = abs(2 * zx * zy) + y
+            zx = next_zx
+            z = complex(zx, zy)**2 + c
+            if abs(z) > 4:
+                return i
+        return num_iterations - 1
+
+    def generate_burning_ship(self, x, y):
+        mset = np.zeros((self.height, self.width))
+
+        for i in range(self.height):
+            for j in range(self.width):
+                zx = self.xmin + j * (self.xmax - self.xmin) / self.width
+                zy = self.ymin + i * (self.ymax - self.ymin) / self.height
+                mset[i, j] = self.mandelbrot(zx, zy, self.num_iterations)
+
+        return mset
+
+    def display_burning(self):
+        plt.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax), cmap="twilight_shifted", norm=LogNorm(), aspect='auto')
+        plt.axis('off')  # Turn off axis
+        plt.grid(False)  # Turn off grid
+        plt.tight_layout()
+        plt.show()
+        
+# Example usage:
+burning_ship = BurningShip(x=-0.8, y=-0.8, num_iterations=256)
+burning_ship.display_burning()

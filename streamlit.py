@@ -3,7 +3,7 @@ from Fractals import Mandelbrot, Julia, BurningShip,Tricorn
 
 
 st.title("Fractals")
-st.write("This is simple visualisations of different fractals")
+"This is simple visualisations of different fractals")
 
 
 option = st.selectbox(
@@ -36,18 +36,14 @@ elif option == 'Tricorn':
     st.pyplot()
 
 elif option == 'Multibrot':
-    st.write("Multibrot Set")
     st.pyplot()
 
 elif option == 'Bifurcation':
-    st.write("Bifurcation Set")
     st.pyplot()
 
 elif option == 'Newton':
-    st.write("Newton Set")
     st.pyplot()
 
 elif option == 'Buddhabrot':
-    st.write("Buddhabrot Set")
     st.pyplot()
 

@@ -158,4 +158,14 @@ class Tricorn:
         plt.tight_layout()
         plt.show()
 
+class Multibrot:
+
+
+class Bifurcation:
+
+class Newton:
+
+class Buddhabrot:
+
+
 

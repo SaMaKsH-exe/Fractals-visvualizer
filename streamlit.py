@@ -1,6 +1,6 @@
 import streamlit as st
 from Fractals import Mandelbrot, Julia, BurningShip,Tricorn
-import matplotlib.pyplot as plt
+
 
 st.title("Fractals")
 st.write("This is simple visualisations of different fractals")

@@ -1,4 +1,10 @@
-# Fractals visualizer
+#Fractals Visualizer
 
-This is a very simple, fractals visualizer. There are multiple fractals to choose from, and the program takes a bit of time to generate these fractals, as they are being generated in matplotlib and are not being displayed as a picture. 
- 
+Welcome to the Fractals Visualizer! Explore mesmerizing fractal patterns with this simple tool. Choose between different fractals. 
+
+
+https://fractals-visualizer.streamlit.app/ 
+
+
+
+

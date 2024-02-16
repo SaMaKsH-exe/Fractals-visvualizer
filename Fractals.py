@@ -4,8 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
 class Mandelbrot():
-    def __init__(self, name, xmin, xmax, ymin, ymax, width, height, max_iter):
-        self.name = name
+    def __init__(self, xmin, xmax, ymin, ymax, width, height, max_iter):
         self.xmin = xmin
         self.xmax = xmax
         self.ymin = ymin
@@ -115,6 +114,48 @@ class BurningShip():
         plt.tight_layout()
         plt.show()
         
-# Example usage:
-burning_ship = BurningShip(x=-0.8, y=-0.8, num_iterations=256)
-burning_ship.display_burning()
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+class Tricorn:
+    def __init__(self, width, height, max_iter):
+        self.width = width
+        self.height = height
+        self.max_iter = max_iter
+
+    def tricorn(self, x, y):
+        zx = x
+        zy = y
+        iteration = 0
+
+        while zx*zx + zy*zy < 4 and iteration < self.max_iter:
+            xtemp = zx*zx - zy*zy + x
+            zy = -2*zx*zy + y
+            zx = xtemp
+            iteration += 1
+
+        if iteration == self.max_iter:
+            return 0  # Inside color
+        return iteration / self.max_iter  # Color based on iteration count
+
+    def tricorn_set(self):
+        tset = np.zeros((self.height, self.width))
+
+        # Scaling factors for Mandelbrot X and Y scale
+        x_scale = np.linspace(-2.5, 1, self.width)
+        y_scale = np.linspace(-1, 1, self.height)
+
+        for i, x in enumerate(x_scale):
+            for j, y in enumerate(y_scale):
+                tset[j, i] = self.tricorn(x, y)
+        return tset
+
+    def display_fractal(self):
+        plt.imshow(self.tricorn_set(), cmap='twilight_shifted', extent=(-2.5, 1, -1, 1), aspect='auto')
+        plt.axis('off')  # Turn off axis
+        plt.grid(False)  # Turn off grid
+        plt.tight_layout()
+        plt.show()
+
+

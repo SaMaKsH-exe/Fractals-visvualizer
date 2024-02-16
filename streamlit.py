@@ -1,5 +1,5 @@
 import streamlit as st
-from Fractals import Mandelbrot, Julia, BurningShip
+from Fractals import Mandelbrot, Julia, BurningShip,Tricorn
 import matplotlib.pyplot as plt
 
 st.title("Fractals")
@@ -16,24 +16,23 @@ option = st.selectbox(
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 if option == 'Mandelbrot':
-    mandalbrot = Mandelbrot("Mandelbrot Set", xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter=256)
+    mandalbrot = Mandelbrot( xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter=256)
     mandalbrot.display_fractal()
     st.pyplot()
     
-   
-
 elif option == 'Julia':
     julia_set = Julia(h_range=1000, w_range=1000, max_iter=100)
     julia_set.draw_julia()
     st.pyplot()
 
 elif option == 'Burning Ship':
-    burning_ship = BurningShip(x=-2, y=-2, num_iterations=256)
+    burning_ship = BurningShip(x=-2, y=-2, num_iterations=100)
     burning_ship.display_burning()
     st.pyplot()
 
 elif option == 'Tricorn':
-    st.write("Tricorn Set")
+    tricorn = Tricorn(width=1200, height=1200, max_iter=100)
+    tricorn.display_fractal()
     st.pyplot()
 
 elif option == 'Multibrot':

@@ -3,7 +3,7 @@ from Fractals import Mandelbrot, Julia, BurningShip,Tricorn
 
 
 st.title("Fractals")
-"This is simple visualisations of different fractals")
+st.write("This is simple visualisations of different fractals, it is not perfect and quote slow, but it hey it works.")
 
 
 option = st.selectbox(
@@ -13,25 +13,27 @@ option = st.selectbox(
     placeholder='Choose a fractal',
 )
 
+max_itter = int(st.number_input('Choose the number of iterations for fractal generation. Aim for a balance between detail and speed. Recommended range: 100-1000 iterations.', min_value=1, value=100, step=1))
+
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
 if option == 'Mandelbrot':
-    mandalbrot = Mandelbrot( xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter=256)
+    mandalbrot = Mandelbrot( xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter= max_itter)
     mandalbrot.display_fractal()
     st.pyplot()
     
 elif option == 'Julia':
-    julia_set = Julia(h_range=1000, w_range=1000, max_iter=100)
+    julia_set = Julia(h_range=1200, w_range=1200, max_iter=max_itter)
     julia_set.draw_julia()
     st.pyplot()
 
 elif option == 'Burning Ship':
-    burning_ship = BurningShip(x=-2, y=-2, num_iterations=100)
+    burning_ship = BurningShip(x=-2, y=-2, num_iterations=max_itter)
     burning_ship.display_burning()
     st.pyplot()
 
 elif option == 'Tricorn':
-    tricorn = Tricorn(width=1200, height=1200, max_iter=100)
+    tricorn = Tricorn(width=1200, height=1200, max_iter=max_itter)
     tricorn.display_fractal()
     st.pyplot()
 

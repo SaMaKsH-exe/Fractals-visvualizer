@@ -67,8 +67,6 @@ class Julia():
         plt.axis("off")
         plt.show()
 
-julia_set = Julia(h_range=500, w_range=500, max_iter=69)
-julia_set.draw_julia()
 
 
 class BurningShip():
@@ -115,10 +113,7 @@ class BurningShip():
         plt.show()
         
 
-import numpy as np
-import matplotlib.pyplot as plt
-
-class Tricorn:
+class Tricorn():
     def __init__(self, width, height, max_iter):
         self.width = width
         self.height = height
@@ -152,20 +147,21 @@ class Tricorn:
         return tset
 
     def display_fractal(self):
-        plt.imshow(self.tricorn_set(), cmap='twilight_shifted', extent=(-2.5, 1, -1, 1), aspect='auto')
+        plt.imshow(self.tricorn_set(), cmap='magma', extent=(-2.5, 1, -1, 1), aspect='auto')
         plt.axis('off')  # Turn off axis
         plt.grid(False)  # Turn off grid
         plt.tight_layout()
         plt.show()
+        
+        
+# class Multibrot():
+    
+  
+# class Bifurcation():
 
-class Multibrot:
+# class Newton():
 
-
-class Bifurcation:
-
-class Newton:
-
-class Buddhabrot:
+# class Buddhabrot():
 
 
 

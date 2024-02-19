@@ -155,7 +155,7 @@ class Tricorn():
         
         
 # class Multibrot():
-    
+        
   
 # class Bifurcation():
 

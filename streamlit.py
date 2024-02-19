@@ -13,9 +13,11 @@ option = st.selectbox(
     placeholder='Choose a fractal',
 )
 
-max_itter = int(st.number_input('Choose the number of iterations for fractal generation. Aim for a balance between detail and speed. Recommended range: 100-1000 iterations.', min_value=1, value=100, step=1))
+max_itter = int(st.number_input('Choose the number of iterations for fractal generation. Aim for a balance between detail and speed. Recommended range: 100-1000 iterations.', min_value=1, value=100, step=10      ))
 
 st.set_option('deprecation.showPyplotGlobalUse', False)
+
+
 
 if option == 'Mandelbrot':
     mandalbrot = Mandelbrot( xmin=-2, xmax=1, ymin=-1, ymax=1, width=1000, height=1000, max_iter= max_itter)

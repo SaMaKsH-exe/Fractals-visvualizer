@@ -8,7 +8,7 @@ st.write("This is simple visualisations of different fractals, it is not perfect
 
 option = st.selectbox(
     'Which fractal would you like to see?',
-    ('Mandelbrot', 'Julia', 'Burning Ship', 'Tricorn', 'Multibrot', 'Bifurcation', 'Newton', 'Buddhabrot'),
+    ('Mandelbrot', 'Julia', 'Burning Ship', 'Tricorn'),
     index=None,
     placeholder='Choose a fractal',
 )

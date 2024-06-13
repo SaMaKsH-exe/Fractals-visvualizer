@@ -3,7 +3,7 @@ from Fractals import Mandelbrot, Julia, BurningShip,Tricorn
 
 
 st.title("Fractals")
-st.write("This is simple visualisations of different fractals, it is not perfect and quote slow, but it hey it works.")
+st.write("This is simple visualisations of different fractals, it is not perfect and quite slow, but it hey it works.")
 
 
 option = st.selectbox(

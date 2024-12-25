@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
-
 class Mandelbrot():
     def __init__(self, xmin, xmax, ymin, ymax, width, height, max_iter):
         self.xmin = xmin
@@ -34,10 +33,10 @@ class Mandelbrot():
                 mset[j,i] = self.mandelbrot(c)
         return mset
     
-    def display_fractal(self):
-        plt.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax))
-        plt.set_cmap("hot")
-        plt.show()
+    def display_fractal(self, ax):
+        ax.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax), cmap="hot", norm=LogNorm())
+        ax.set_title('Mandelbrot Set')
+        ax.axis('off')
 
 
 class Julia():
@@ -63,11 +62,10 @@ class Julia():
                         break
         return iter_div
 
-    def draw_julia(self):
-        plt.imshow(self.jset, extent=(-1.5, 1.5, -1.5, 1.5), cmap="magma", norm=LogNorm())
-        plt.axis("off")
-        plt.show()
-
+    def draw_julia(self, ax):
+        ax.imshow(self.jset, extent=(-1.5, 1.5, -1.5, 1.5), cmap="magma", norm=LogNorm())
+        ax.axis("off")
+        ax.set_title('Julia Set')
 
 
 class BurningShip():
@@ -106,13 +104,11 @@ class BurningShip():
 
         return mset
 
-    def display_burning(self):
-        plt.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax), cmap="twilight_shifted", norm=LogNorm(), aspect='auto')
-        plt.axis('off')  # Turn off axis
-        plt.grid(False)  # Turn off grid
-        plt.tight_layout()
-        plt.show()
-        
+    def display_burning(self, ax):
+        ax.imshow(self.mset, extent=(self.xmin, self.xmax, self.ymin, self.ymax), cmap="twilight_shifted", norm=LogNorm(), aspect='auto')
+        ax.axis('off')
+        ax.set_title('Burning Ship')
+
 
 class Tricorn():
     def __init__(self, width, height, max_iter):
@@ -147,13 +143,7 @@ class Tricorn():
                 tset[j, i] = self.tricorn(x, y)
         return tset
 
-    def display_fractal(self):
-        plt.imshow(self.tricorn_set(), cmap='magma', extent=(-2.5, 1, -1, 1), aspect='auto')
-        plt.axis('off')  # Turn off axis
-        plt.grid(False)  # Turn off grid
-        plt.tight_layout()
-        plt.show()
-        
-        
-
-
+    def display_fractal(self, ax):
+        ax.imshow(self.tricorn_set(), cmap='magma', extent=(-2.5, 1, -1, 1), aspect='auto')
+        ax.axis('off')
+        ax.set_title('Tricorn')

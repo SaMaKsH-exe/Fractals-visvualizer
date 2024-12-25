@@ -1,5 +1,6 @@
 import streamlit as st
 from Fractals import Mandelbrot, Julia, BurningShip, Tricorn
+st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title("Fractals")
 st.write("This is a simple visualization of different fractals. It is not perfect and quite slow, but it works.")

@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 class Mandelbrot():
     def __init__(self, xmin, xmax, ymin, ymax, width, height, max_iter):

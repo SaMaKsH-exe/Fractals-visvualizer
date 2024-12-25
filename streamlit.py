@@ -1,6 +1,5 @@
 import streamlit as st
 from Fractals import Mandelbrot, Julia, BurningShip, Tricorn
-st.set_option('deprecation.showPyplotGlobalUse', False)
 
 st.title("Fractals")
 st.write("This is a simple visualization of different fractals. It is not perfect and quite slow, but it works.")
@@ -14,9 +13,6 @@ option = st.selectbox(
 
 max_itter = int(st.number_input('Choose the number of iterations for fractal generation. Aim for a balance between detail and speed. Recommended range: 100-1000 iterations.',
                                min_value=1, value=100, step=10))
-
-# Remove the deprecated option setting
-# st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Create fractal based on the selection
 if option == 'Mandelbrot':
